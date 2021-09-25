@@ -42,6 +42,7 @@ Plug 'majutsushi/tagbar'
 Plug 'Lokaltog/vim-powerline'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'fatih/molokai'
+Plug 'Pocco81/AutoSave.nvim'
 
 call plug#end()
 endif
@@ -185,3 +186,26 @@ noremap <silent> <F9> :AsyncRun go build <cr>
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
+
+" autosave for neovim
+lua << EOF
+local autosave = require("autosave")
+
+autosave.setup(
+    {
+        enabled = true,
+        execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+        events = {"InsertLeave", "TextChanged"},
+        conditions = {
+            exists = true,
+            filename_is_not = {},
+            filetype_is_not = {},
+            modifiable = true
+        },
+        write_all_buffers = false,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 135
+    }
+)
+EOF
