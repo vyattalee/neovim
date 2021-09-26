@@ -12,8 +12,8 @@ set nocursorline
 set backspace=2
 
 syntax enable
-"set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
 
 "-----------------------------------------
 " Plugins
@@ -179,7 +179,7 @@ let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
 " F10 to toggle quickfix window
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
-noremap <silent> <F9> :AsyncRun go build <cr>
+noremap <silent> <F9> :AsyncRun go build -o $(VIM_FILEDIR)/$(VIM_FILENOEXT) $(VIM_FILEPATH) <cr>
 "noremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR)"$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 
 "theme molokai 
